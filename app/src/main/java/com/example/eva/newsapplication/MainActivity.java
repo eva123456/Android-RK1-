@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.MenuAdapter;
@@ -25,8 +26,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Button btnCategory, btnUpdate, btnDoNotUpdate;
     TextView tvNewsInfo;
-    BroadcastReceiver bcReceiver;
+    static BroadcastReceiver bcReceiver;
     static final String UPDATE_ACTION = "com.example.eva.update_news";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onStart(){
         super.onStart();
-        Intent intent = new Intent(this, NewsService.class);
+        Intent intent = new Intent(MainActivity.this, NewsService.class);
         startService(intent);
         showNews(this);
     }
@@ -84,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intentToService = new Intent(this, NewsService.class);
         switch (v.getId()){
             case R.id.btnCategory:
-                Intent intentToActivity = new Intent(this, CategoryActivity.class);
+                final Intent intentToActivity = new Intent(this, CategoryActivity.class);
                 startActivity(intentToActivity);
                 break;
             case R.id.btnUpdate:
