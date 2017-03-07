@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name"> News </string>
+    <string name="auto"> auto </string>
+    <string name="it"> it </string>
+    <string name="health"> health </string>
+    <string name="update"> update </string>
+    <string name="do_not_update"> do not update </string>
+    <string name="no_internet"> there is no internet... </string>
+</resources>

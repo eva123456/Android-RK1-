@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20sp"
+        android:id="@+id/tvNewsInfo"
+        android:text=""
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnCategory"
+        android:text="auto"
+        android:textSize="27sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnUpdate"
+        android:text="@string/update"
+        android:textSize="27sp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:layout_gravity="center_horizontal"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnDoNotUpdate"
+        android:text="@string/do_not_update"
+        android:layout_gravity="center_horizontal"
+        android:textSize="27sp"
+        android:layout_margin="5dp"
+        android:padding="5dp" />
+
+</LinearLayout>
