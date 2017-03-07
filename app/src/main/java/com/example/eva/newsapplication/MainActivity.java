@@ -26,9 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnCategory, btnUpdate, btnDoNotUpdate;
     TextView tvNewsInfo;
     BroadcastReceiver bcReceiver;
-    //String currentTopic = Topics.AUTO;
     static final String UPDATE_ACTION = "com.example.eva.update_news";
-    static final int REQUEST_TOPIC = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showNews(MainActivity.this);
             }
         };
+
         registerReceiver(bcReceiver, new IntentFilter(UPDATE_ACTION));
 
     }
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onStart(){
         super.onStart();
-        Intent intent = new Intent(UPDATE_ACTION);
+        Intent intent = new Intent(this, NewsService.class);
         startService(intent);
         showNews(this);
     }
@@ -69,18 +68,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         unregisterReceiver(bcReceiver);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        if(intent == null)
-            return;
-
-        String currentTopic = intent.getStringExtra("topic");
-        Storage.getInstance(this).saveCurrentTopic(currentTopic);
-        Intent intentNews = new Intent(UPDATE_ACTION);
-        startService(intentNews);
-      //  showNews(this);
-
-    }
 
     private void showNews(Context context){
         News news = Storage.getInstance(context).getLastSavedNews();
@@ -98,10 +85,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.btnCategory:
                 Intent intentToActivity = new Intent(this, CategoryActivity.class);
-                startActivityForResult(intentToActivity, REQUEST_TOPIC);
+                startActivity(intentToActivity);
                 break;
             case R.id.btnUpdate:
-                Scheduler.getInstance().schedule(this, intentToService, 10000);
+                Scheduler.getInstance().schedule(this, intentToService, 20000);
                 break;
             case R.id.btnDoNotUpdate:
                 Scheduler.getInstance().unschedule(this, intentToService);

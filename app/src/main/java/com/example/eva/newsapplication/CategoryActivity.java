@@ -31,12 +31,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         String currentTopic = ((Button) v).getText().toString();
-       // Storage.getInstance(this).saveCurrentTopic(currentTopic);
-
-        Intent intent = new Intent();
-        intent.putExtra("topic", currentTopic);
-        setResult(RESULT_OK, intent);
+        Storage.getInstance(this).saveCurrentTopic(currentTopic);
         finish();
-
     }
 }
